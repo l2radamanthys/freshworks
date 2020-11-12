@@ -1,0 +1,4 @@
+
+
+class FreshchatClient():
+    pass
