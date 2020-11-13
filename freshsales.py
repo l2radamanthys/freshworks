@@ -29,7 +29,7 @@ class LeadComponent(FSBaseClient):
         id_ = kwargs.get('id')
         return self.get_request(f"/{id_}", params=kwargs, headers=self.headers)
 
-    def add(self, **kwargs):
+    def create(self, **kwargs):
         # https://developer.freshsales.io/api/#create_lead
         require_keys(kwargs, [
             'first_name',
