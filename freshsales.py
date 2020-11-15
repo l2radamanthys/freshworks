@@ -1,7 +1,6 @@
 from client import ApiClient, require_keys
 
 
-
 class FSBaseClient(ApiClient):
     def __init__(self, base_url, api_key, timeout):
         super(FSBaseClient, self).__init__(base_url=base_url, timeout=timeout)
@@ -20,7 +19,11 @@ class FSBaseClient(ApiClient):
 
 class LeadComponent(FSBaseClient):
     def __init__(self, base_url, api_key, timeout):
-        super(LeadComponent, self).__init__(base_url=f"{base_url}/leads", api_key=api_key, timeout=timeout)
+        super(LeadComponent, self).__init__(
+            base_url=f"{base_url}/leads",
+            api_key=api_key,
+            timeout=timeout
+        )
 
     def get(self, **kwargs):
         # https://developer.freshsales.io/api/#view_a_lead
@@ -37,18 +40,22 @@ class LeadComponent(FSBaseClient):
             'mobile_number',
             'email',
         ])
-        return self.post_request("", data={ 'lead': kwargs }, headers=self.headers)
+        return self.post_request("", data={'lead': kwargs}, headers=self.headers)
 
     def update(self, **kwargs):
         # https://developer.freshsales.io/api/#update_lead
         require_keys(kwargs, 'id')
         id_ = kwargs.get('id')
-        return self.put_request(f"/{id_}", data={ 'lead': kwargs }, headers=self.headers)
+        return self.put_request(f"/{id_}", data={'lead': kwargs}, headers=self.headers)
 
 
 class ContactComponent(FSBaseClient):
     def __init__(self, base_url, api_key, timeout):
-        super(ContactComponent, self).__init__(base_url=f"{base_url}/contacts", api_key=api_key, timeout=timeout)
+        super(ContactComponent, self).__init__(
+            base_url=f"{base_url}/contacts",
+            api_key=api_key,
+            timeout=timeout
+        )
 
     def get(self, **kwargs):
         # https://developer.freshsales.io/api/#view_a_contact
